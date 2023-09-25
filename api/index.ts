@@ -3,11 +3,19 @@ import { textSync } from 'figlet';
 import { User } from './src/models/User';
 import { handleError } from './util';
 import { prisma } from './prisma';
+import cors from 'cors';
 
 const app = express();
 const port = 3001
 
 /* ======= MIDDLEWARE ======= */
+// allow CORS requests
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // Replace with the actual origin of your React app
+    methods: ['GET', 'POST'], // Define the HTTP methods you want to allow
+  })
+);
 // parse every incoming JSON request body
 app.use(express.json())
 
